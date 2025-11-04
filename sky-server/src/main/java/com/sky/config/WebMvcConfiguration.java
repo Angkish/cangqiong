@@ -69,6 +69,16 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+
+        // 图片静态资源映射 - 使用绝对路径
+        String imagePath = "file:D:/CangQiong/images/";
+        log.info("注册静态资源映射: /images/** -> {}", imagePath);
+
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations(imagePath);
+
+        // 添加更多日志来确认映射生效
+        log.info("静态资源映射注册完成");
     }
 
 
@@ -83,4 +93,6 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         //将自己的消息转换器加入容器中
         converters.add(0,converter);
     }
+
+
 }
