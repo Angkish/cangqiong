@@ -9,6 +9,13 @@
         (#{name},#{categoryId},#{price},#{image},#{description},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})
     </insert>
 
+    <delete id="deleteByIds">
+        delete from dish where id in
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+
     <!-- 分页查询 - 返回Page类型 -->
     <select id="pageQuery" resultType="com.sky.vo.DishVO">
         select d.* , c.name as categoryName
