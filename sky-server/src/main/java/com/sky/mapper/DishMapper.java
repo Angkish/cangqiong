@@ -65,10 +65,18 @@ public interface DishMapper {
 
     /**
      * 根据ID动态修改菜品的基本信息
+     * 更新菜品的状态信息用于启用和停用
      * @param dish
      */
     @AutoFill(value = OperationType.UPDATE)
     void update(Dish dish);
 
 
+    /**
+     * 根据套餐id查询菜品
+     * @param setmealId
+     * @return
+     */
+    @Select("select a.* from dish a left join setmeal_dish b on a.id = b.dish_id where b.setmeal_id = #{setmealId}")
+    List<Dish> getBySetmealId(Long setmealId);
 }

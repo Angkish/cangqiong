@@ -53,8 +53,11 @@ public interface SetmealMapper {
 
     /**
      * 根据ID动态修改套餐的基本信息
+     * 更新套餐的状态信息用于启用和停用
      * @param setmeal
      */
     @AutoFill(value = OperationType.UPDATE)
     void update(Setmeal setmeal);
+
+
 }
